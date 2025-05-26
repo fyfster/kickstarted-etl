@@ -49,7 +49,7 @@ class NewCsvHandler(FileSystemEventHandler):
 
             logging.info(f"New file detected: {filename}")
 
-            process_file(event.src_path, filename)
+            self.process_file(event.src_path, filename)
 
     def process_file(self, filePath, filename):
         snapshot = filename.split("-")[-1].replace(".csv", "")
