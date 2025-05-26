@@ -1,6 +1,6 @@
 import unittest
 from pyspark.sql import SparkSession
-from scripts.etl import transform_data, filter_relevent_kickstarters
+from scripts.etl import transform_data, filter_relevant_kickstarters
 
 class TestETLPipeline(unittest.TestCase):
 
@@ -30,7 +30,7 @@ class TestETLPipeline(unittest.TestCase):
             {"goal": 0.0, "launched_date": None, "deadline_date": None, "campaign_duration": -1},
             {"goal": 1000.0, "launched_date": "2020-01-01", "deadline_date": "2020-01-05", "campaign_duration": 4}
         ])
-        filtered = filter_relevent_kickstarters(df)
+        filtered = filter_relevant_kickstarters(df)
         self.assertEqual(filtered.count(), 1)
 
 if __name__ == "__main__":

@@ -31,7 +31,7 @@ def transform_data(kickStarter):
         logging.error(f"An error occurred while transforming: {e}")
         return None
 
-def filter_relevent_kickstarters(kickStarter):
+def filter_relevant_kickstarters(kickStarter):
     cleanKickStarter = kickStarter.filter(
         (col("launched_date").isNotNull()) &
         (col("deadline_date").isNotNull()) &
@@ -75,7 +75,7 @@ def main():
         return
 
     try:
-        cleanKickStarter = filter_relevent_kickstarters(kickStarter)
+        cleanKickStarter = filter_relevant_kickstarters(kickStarter)
 
         fact, dim = build_dimensional_tables(cleanKickStarter)
         summary = aggregate_category_metrics(cleanKickStarter)

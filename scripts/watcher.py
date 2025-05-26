@@ -8,7 +8,7 @@ from pyspark.sql.functions import col, round, lit, desc
 from scripts.etl import (
     extract_data,
     transform_data,
-    filter_relevent_kickstarters,
+    filter_relevant_kickstarters,
     build_dimensional_tables,
     aggregate_category_metrics
 )
@@ -56,7 +56,7 @@ class NewCsvHandler(FileSystemEventHandler):
         df = extract_data(self.spark, filePath)
         if df:
             df = transform_data(df).withColumn("snapshot", lit(snapshot))
-            clean_df = filter_relevent_kickstarters(df)
+            clean_df = filter_relevant_kickstarters(df)
             fact_df, dim_df = build_dimensional_tables(clean_df)
             summary_df = aggregate_category_metrics(clean_df).withColumn("snapshot", lit(snapshot))
 
